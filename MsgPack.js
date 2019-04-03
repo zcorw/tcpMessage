@@ -1,4 +1,4 @@
-const MessagePack = (HEAD_LEN = 20) => {
+const MessagePack = () => {
     let head = {
         pid: 0,
         version: 0,
@@ -31,8 +31,7 @@ const MessagePack = (HEAD_LEN = 20) => {
         },
         getBody: () => {
             return body;
-        },
-        HEAD_LEN
+        }
     }
     return self;
 }
