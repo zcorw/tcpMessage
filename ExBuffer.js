@@ -1,5 +1,5 @@
 var util = require('util');
-var MessagePack = require("./MessagePack.js");
+var MessagePack = require("./MsgPack.js");
 var events = require('events');
 /*
 * 构造方法
