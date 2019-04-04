@@ -1,0 +1,22 @@
+{
+  "name": "test-network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcorw/tcpMessage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zcorw/tcpMessage/issues"
+  },
+  "homepage": "https://github.com/zcorw/tcpMessage#readme",
+  "devDependencies": {
+    "lodash": "^4.17.11"
+  }
+}

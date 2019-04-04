@@ -60,25 +60,11 @@ var ExBuffer = function (HEAD_LEN = 20) {
                 break;//连包头都读不了
             }
 
-            var msg = MessagePack();
-            var hBuf = Buffer.allocUnsafe(HEAD_LEN);
-            _buffer.copy(hBuf, 0, _startOffset, _startOffset + HEAD_LEN);
-            msg.readHeadData(hBuf);
-            if (msg.getHead('length') <= _dataLength - HEAD_LEN) {
-                _startOffset += HEAD_LEN;
-                _dataLength -= HEAD_LEN;
-                //new msg;
-
-                var bBuf = null;
-                if (msg.getHead('length') > 0) {
-                    bBuf = Buffer.allocUnsafe(msg.getHead('length'));
-                    _buffer.copy(bBuf, 0, _startOffset, _startOffset + msg.getHead('length'));
-                }
-
-                _startOffset += msg.getHead('length');
-                _dataLength -= msg.getHead('length');
+            var msg = new MessagePack(_buffer.slice(_startOffset, _startOffset + HEAD_LEN));
+            if (msg) {
+                _startOffset += HEAD_LEN + msg.getHead('length');
+                _dataLength -= HEAD_LEN + msg.getHead('length');
                 try {
-                    msg.setBody(bBuf);
                     self.emit("data", msg);
                 } catch (e) {
                     self.emit("error", e);
